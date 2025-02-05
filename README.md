@@ -34,7 +34,7 @@ This project provides the basic functionality of a blog page. Users can view blo
 ## Usage
 
 1. Run the project.
-2. Navigate to `http://localhost:8080` in your browser.
+2. Navigate to `http://localhost:5275` in your browser.
 3. View blog posts, add new posts, or filter by category.
 
 ## Database Schema
