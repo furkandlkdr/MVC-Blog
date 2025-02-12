@@ -6,51 +6,38 @@ namespace Blog {
     public static class SeedData {
         public static void Initialize(IServiceProvider serviceProvider) {
             using (var context = new ApplicationDbContext(
-                serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>())) {
-                if (context.Authors.Any() || context.Categories.Any() || context.BlogPosts.Any())
-                    return;
+            serviceProvider.GetRequiredService<DbContextOptions<ApplicationDbContext>>())) {
+                if (context.BlogPosts.Any()) return;
 
-                // Author examples
-                var authors = new List<Author>
-                {
-                    new Author { Name = "Ahmet Yılmaz" },
-                    new Author { Name = "Elif Kaya" }
-                };
-                context.Authors.AddRange(authors);
+                // Author and category examples
+                var author1 = new Author { Name = "Furkan" };
+                var author2 = new Author { Name = "Ahmet" };
+
+                var category1 = new Category { Name = "Teknoloji" };
+                var category2 = new Category { Name = "Yazılım" };
+
+                context.Authors.AddRange(author1, author2);
+                context.Categories.AddRange(category1, category2);
                 context.SaveChanges();
 
-                // Category examples
-                var categories = new List<Category>
-                {
-                    new Category { Name = "Teknoloji" },
-                    new Category { Name = "Tarih" }
+                // Blog post examples
+                var blog1 = new BlogPost {
+                    Title = "ASP.NET Core ile MVC Geliştirme",
+                    Summary = "Bu yazıda ASP.NET Core ile MVC'nin temel yapılarını anlatıyoruz.",
+                    Content = "Detaylı içerik burada...",
+                    AuthorId = author1.Id,
+                    CategoryId = category1.Id
                 };
-                context.Categories.AddRange(categories);
-                context.SaveChanges();
 
-                // BlogPost examples
-                var blogPosts = new List<BlogPost>
-                {
-                    new BlogPost
-                    {
-                        Title = "İlk Blog Yazım",
-                        Summary = "Bu benim ilk blog yazımın özeti.",
-                        Content = "Bu bir test yazısıdır.",
-                        AuthorId = authors[0].Id,
-                        CategoryId = categories[0].Id,
-                        CreatedAt = DateTime.Now
-                    },
-                    new BlogPost
-                    {
-                        Title = "Tarihte Bugün",
-                        Summary = "Geçmişte bugün olan olaylar...",
-                        Content = "Tarih hakkında ilginç bilgiler.",
-                        AuthorId = authors[1].Id,
-                        CategoryId = categories[1].Id,
-                        CreatedAt = DateTime.Now
-                    }
+                var blog2 = new BlogPost {
+                    Title = "C# ile Design Patterns",
+                    Summary = "Bu yazıda C# programlama dilinde design pattern örnekleri anlatılmaktadır.",
+                    Content = "Detaylı içerik burada...",
+                    AuthorId = author2.Id,
+                    CategoryId = category2.Id
                 };
-                context.BlogPosts.AddRange(blogPosts);
+
+                context.BlogPosts.AddRange(blog1, blog2);
                 context.SaveChanges();
             }
         }

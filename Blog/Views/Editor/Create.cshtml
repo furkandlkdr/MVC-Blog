@@ -1,0 +1,69 @@
+﻿@{
+    ViewData["Title"] = "Yeni Blog Yazısı Ekle";
+}
+
+<h2>Yeni Blog Yazısı Ekle</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label for="title">Başlık</label>
+        <input type="text" id="title" name="Title" class="form-control" required>
+    </div>
+
+    <div class="form-group">
+        <label for="summary">Özet</label>
+        <textarea id="summary" name="Summary" class="form-control" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label for="content">İçerik</label>
+        <textarea id="content" name="Content" class="form-control" required></textarea>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Kaydet</button>
+</form>
+
+<form asp-action="ClearDatabase" method="post">
+    <input type="submit" value="Clear Database" class="btn btn-danger" />
+</form>
+
+@* @model Blog.Models.BlogPost
+
+<h2>Yeni Blog Yazısı Ekle</h2>
+
+<form asp-action="Create" method="post">
+    <div class="form-group">
+        <label asp-for="Title">Başlık</label>
+        <input asp-for="Title" class="form-control" required />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Summary">Özet</label>
+        <textarea asp-for="Summary" class="form-control" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Content">İçerik</label>
+        <textarea asp-for="Content" class="form-control" required></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="AuthorId">Yazar</label>
+        <select asp-for="AuthorId" asp-items="ViewBag.Authors" class="form-control"></select>
+        <a href="/author/create" class="btn btn-sm btn-secondary">Yeni Yazar Ekle</a>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="CategoryId">Kategori</label>
+        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
+        <a href="/category/create" class="btn btn-sm btn-secondary">Yeni Kategori Ekle</a>
+    </div>
+
+    <button type="submit" class="btn btn-primary mt-2">Kaydet</button>
+</form>
+
+<form asp-action="ClearDatabase" method="post">
+    <input type="submit" value="Clear Database" class="btn btn-danger" />
+</form>
+
+ *@
