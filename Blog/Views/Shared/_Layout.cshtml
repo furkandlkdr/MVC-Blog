@@ -20,15 +20,19 @@
                 <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
                     <ul class="navbar-nav">
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
+                            <a class="nav-link text-dark my-hover-effect @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Home" ? "fw-bold" : "")"
+                               asp-area="" asp-controller="Home" asp-action="Index">Ana Sayfa</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Content" asp-action="AuthorsAndCategories">Yazarlar & Kategoriler</a>
+                            <a class="nav-link text-dark my-hover-effect @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Content" ? "fw-bold" : "")"
+                               asp-area="" asp-controller="Content" asp-action="AuthorsAndCategories">Yazarlar & Kategoriler</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Editor" asp-action="Index">Editör</a>
+                            <a class="nav-link text-dark my-hover-effect @(ViewContext.RouteData.Values["Controller"]?.ToString() == "Editor" ? "fw-bold" : "")"
+                               asp-area="" asp-controller="Editor" asp-action="Index">Editör</a>
                         </li>
                     </ul>
+
                 </div>
             </div>
         </nav>
@@ -42,7 +46,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container text-center py-3">
-            &copy; 2025 - Blog - Acun Medya Akademi - Made with &hearts; by <a class="text-dark" href="https://www.furkan.software">Nafair</a>
+            &copy; 2025 - Blog - Acun Medya Akademi - Made with &hearts; by <a class="text-dark my-hover-effect" target="_blank" href="https://www.furkan.software">Nafair</a>
         </div>
     </footer>
 

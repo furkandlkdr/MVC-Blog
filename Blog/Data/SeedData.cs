@@ -1,5 +1,6 @@
 ﻿using Blog.Data;
 using Blog.Models;
+using Microsoft.AspNetCore.Http.HttpResults;
 using Microsoft.EntityFrameworkCore;
 
 namespace Blog {
@@ -26,7 +27,8 @@ namespace Blog {
                     Summary = "Bu yazıda ASP.NET Core ile MVC'nin temel yapılarını anlatıyoruz.",
                     Content = "Detaylı içerik burada...",
                     AuthorId = author1.Id,
-                    CategoryId = category1.Id
+                    CategoryId = category1.Id,
+                    CreatedAt = DateTime.Now
                 };
 
                 var blog2 = new BlogPost {
@@ -34,7 +36,8 @@ namespace Blog {
                     Summary = "Bu yazıda C# programlama dilinde design pattern örnekleri anlatılmaktadır.",
                     Content = "Detaylı içerik burada...",
                     AuthorId = author2.Id,
-                    CategoryId = category2.Id
+                    CategoryId = category2.Id,
+                    CreatedAt = DateTime.Now
                 };
 
                 context.BlogPosts.AddRange(blog1, blog2);

@@ -2,68 +2,92 @@
     ViewData["Title"] = "Yeni Blog Yazısı Ekle";
 }
 
-<h2>Yeni Blog Yazısı Ekle</h2>
+<div class="container mt-5">
+    <h2 class="text-center">Yeni Blog Yazısı Ekle</h2>
 
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label for="title">Başlık</label>
-        <input type="text" id="title" name="Title" class="form-control" required>
+    <form asp-action="Create" method="post">
+        <div class="mb-3">
+            <label for="title" class="form-label">Başlık</label>
+            <input type="text" id="title" name="Title" class="form-control" required>
+        </div>
+
+        <div class="mb-3">
+            <label for="summary" class="form-label">Özet</label>
+            <textarea id="summary" name="Summary" class="form-control" rows="3" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="content" class="form-label">İçerik</label>
+            <textarea id="content" name="Content" class="form-control" rows="5" required></textarea>
+        </div>
+
+        <div class="mb-3">
+            <label for="author" class="form-label">Yazar Seç</label>
+            <div class="input-group">
+                <select id="author" name="AuthorId" class="form-select" asp-items="ViewBag.Authors" required>
+                    <option value="">Seçiniz</option>
+                </select>
+                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addAuthorModal">Ekle</button>
+            </div>
+        </div>
+
+        <div class="mb-4">
+            <label for="category" class="form-label">Kategori Seç</label>
+            <div class="input-group">
+                <select id="category" name="CategoryId" class="form-select" asp-items="ViewBag.Categories" required>
+                    <option value="">Seçiniz</option>
+                </select>
+                <button type="button" class="btn btn-outline-secondary" data-bs-toggle="modal" data-bs-target="#addCategoryModal">Ekle</button>
+            </div>
+        </div>
+
+        <button type="submit" class="btn btn-primary w-100 mb-3">Kaydet</button>
+    </form>
+
+    <form asp-action="ClearDatabase" method="post">
+        <button type="submit" class="btn btn-danger w-100 mt-4">Veritabanını Temizle</button>
+    </form>
+</div>
+
+<!-- Add Author Modal -->
+<div class="modal fade" id="addAuthorModal" tabindex="-1" aria-labelledby="addAuthorModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addAuthorModalLabel">Yeni Yazar Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Author" asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label for="authorName" class="form-label">Yazar Adı</label>
+                        <input type="text" id="authorName" name="Name" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Yazar Ekle</button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <label for="summary">Özet</label>
-        <textarea id="summary" name="Summary" class="form-control" required></textarea>
+<!-- Add Category Modal -->
+<div class="modal fade" id="addCategoryModal" tabindex="-1" aria-labelledby="addCategoryModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="addCategoryModalLabel">Yeni Kategori Ekle</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form asp-controller="Category" asp-action="Create" method="post">
+                    <div class="mb-3">
+                        <label for="categoryName" class="form-label">Kategori Adı</label>
+                        <input type="text" id="categoryName" name="Name" class="form-control" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary w-100">Kategori Ekle</button>
+                </form>
+            </div>
+        </div>
     </div>
+</div>
 
-    <div class="form-group">
-        <label for="content">İçerik</label>
-        <textarea id="content" name="Content" class="form-control" required></textarea>
-    </div>
-
-    <button type="submit" class="btn btn-primary">Kaydet</button>
-</form>
-
-<form asp-action="ClearDatabase" method="post">
-    <input type="submit" value="Clear Database" class="btn btn-danger" />
-</form>
-
-@* @model Blog.Models.BlogPost
-
-<h2>Yeni Blog Yazısı Ekle</h2>
-
-<form asp-action="Create" method="post">
-    <div class="form-group">
-        <label asp-for="Title">Başlık</label>
-        <input asp-for="Title" class="form-control" required />
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Summary">Özet</label>
-        <textarea asp-for="Summary" class="form-control" required></textarea>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="Content">İçerik</label>
-        <textarea asp-for="Content" class="form-control" required></textarea>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="AuthorId">Yazar</label>
-        <select asp-for="AuthorId" asp-items="ViewBag.Authors" class="form-control"></select>
-        <a href="/author/create" class="btn btn-sm btn-secondary">Yeni Yazar Ekle</a>
-    </div>
-
-    <div class="form-group">
-        <label asp-for="CategoryId">Kategori</label>
-        <select asp-for="CategoryId" asp-items="ViewBag.Categories" class="form-control"></select>
-        <a href="/category/create" class="btn btn-sm btn-secondary">Yeni Kategori Ekle</a>
-    </div>
-
-    <button type="submit" class="btn btn-primary mt-2">Kaydet</button>
-</form>
-
-<form asp-action="ClearDatabase" method="post">
-    <input type="submit" value="Clear Database" class="btn btn-danger" />
-</form>
-
- *@

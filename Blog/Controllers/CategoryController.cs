@@ -29,18 +29,9 @@ namespace Blog.Controllers {
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Category category) {
-            if (!ModelState.IsValid) {
-                Console.WriteLine("ModelState geçerli değil!");
-                foreach (var modelError in ModelState.Values.SelectMany(v => v.Errors)) {
-                    Console.WriteLine(modelError.ErrorMessage);
-                }
-                return View(category);
-            }
-
-            Console.WriteLine("Category added");
             _context.Add(category);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction("Create", "Editor");
         }
 
         // Delete category
@@ -49,7 +40,6 @@ namespace Blog.Controllers {
             if (category == null) return NotFound();
 
             _context.Categories.Remove(category);
-            Console.WriteLine("Category deleted");
             await _context.SaveChangesAsync();
             return RedirectToAction(nameof(Index));
         }

@@ -27,9 +27,22 @@ namespace Blog.Controllers {
         // When form is submitted
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public IActionResult Create(BlogPost post) {
+        public IActionResult Create(BlogPost post, int AuthorId, int CategoryId) {
+            // Manually set the Author and Category properties because the form does not post them
+            // If the AuthorId or CategoryId is invalid, add a model error
+            post.Author = _context.Authors.Find(AuthorId);
+            if (post.Author == null) {
+                ModelState.AddModelError(nameof(AuthorId), "Could not find the selected author.");
+            }
+
+            post.Category = _context.Categories.Find(CategoryId);
+            if (post.Category == null) {
+                ModelState.AddModelError(nameof(CategoryId), "Could not find the selected category.");
+            }
+
+            post.CreatedAt = DateTime.Now;
+
             if (ModelState.IsValid) {
-                post.CreatedAt = DateTime.Now;
                 _context.BlogPosts.Add(post);
                 _context.SaveChanges();
                 return RedirectToAction("Index", "Home");

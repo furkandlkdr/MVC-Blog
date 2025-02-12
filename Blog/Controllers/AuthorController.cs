@@ -28,7 +28,7 @@ namespace Blog.Controllers {
             if (ModelState.IsValid) {
                 _context.Add(author);
                 await _context.SaveChangesAsync();
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction("Create", "Editor");
             }
             return View(author);
         }
