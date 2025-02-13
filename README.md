@@ -28,8 +28,10 @@ This project provides the basic functionality of a blog page. Users can view blo
 1. Clone the project: `git clone https://github.com/furkandlkdr/MVC-Blog.git`
 2. Open the project in Visual Studio.
 3. Configure the database connection string in the `appsettings.json` file.
-4. Install the necessary NuGet packages.
-5. Migrate the database: `dotnet ef database update`
+4. Open terminal and move to the project folder (~/.../Blog/Blog) or open Visual Studio's terminal and move inside the project: `cd Blog`
+5. Download .NET (if not installed yet): `dotnet tool install --global dotnet-ef`
+6. Install the necessary NuGet packages: `dotnet restore`
+7. Migrate the database: `dotnet ef database update`
 
 ## Usage
 
