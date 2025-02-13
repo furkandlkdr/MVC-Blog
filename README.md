@@ -33,7 +33,7 @@ This project provides the basic functionality of a blog page. Users can view blo
 
 ## Usage
 
-1. Run the project.
+1. Run the project via using HTTPS.
 2. Navigate to `http://localhost:5275` in your browser.
 3. View blog posts, add new posts, or filter by category.
 
@@ -61,23 +61,42 @@ This project provides the basic functionality of a blog page. Users can view blo
 ```
 Blog/ 
 ├── Controllers/ 
-│ ├── BlogPostsController.cs 
-│ ├── AuthorsController.cs 
-│ └── CategoriesController.cs 
-├── Models/ 
-│ ├── BlogPost.cs 
-│ ├── Author.cs 
-│ │── Category.cs 
+│   ├── AuthorController.cs 
+│   ├── CategoryController.cs
+│   ├── ContentController.cs
+│   ├── EditorController.cs
+│   └── HomeController.cs
 ├── Data/ 
-│ │── ApplicationDbContext.cs 
+│   ├── ApplicationDbContext.cs 
+│   └── SeedData.cs
+├── Models/ 
+│   ├── Author.cs 
+│   ├── AuthorsCategoriesViewModel.cs 
+│   ├── BlogPost.cs 
+│   └── Category.cs 
 ├── Views/ 
-│ ├── BlogPosts/ 
-│ │ ├── Index.cshtml 
-│ │ ├── Create.cshtml 
-│ ├── Authors/ 
-│ │ ├── Index.cshtml 
-│ │── Categories/ 
-│ │ ├── Index.cshtml 
+│   ├── Author/ 
+│   │   ├── Create.cshtml
+│   │   ├── Details.cshtml 
+│   │   └── Index.cshtml 
+│   ├── Category/
+│   │   ├── Create.cshtml 
+│   │   ├── Details.cshtml 
+│   │   └── Index.cshtml 
+│   ├── Content/
+│   │   └── AuthorsAndCategories.cshtml
+│   ├── Editor/ 
+│   │   └── Create.cshtml 
+│   ├── Home/
+│       ├── Details.cshtml
+│       └── Index.cshtml
+│   └── Shared/ 
+│       └── _Layout.cshtml 
+├── wwwroot/ 
+│   ├── css/ 
+│   │   └── site.css 
 ├── appsettings.json 
-└── ...
+└── Program.cs 
+
+
 ```
