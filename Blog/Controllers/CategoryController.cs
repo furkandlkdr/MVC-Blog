@@ -34,6 +34,18 @@ namespace Blog.Controllers {
             return RedirectToAction("Create", "Editor");
         }
 
+        // Show category blog posts
+        public IActionResult Details(int id) {
+            var category = _context.Categories
+                .Include(c => c.BlogPosts)
+                .FirstOrDefault(c => c.Id == id);
+            if (category == null) {
+                return NotFound();
+            }
+            return View(category);
+        }
+
+
         // Delete category
         public async Task<IActionResult> Delete(int id) {
             var category = await _context.Categories.FindAsync(id);

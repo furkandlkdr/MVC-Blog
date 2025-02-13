@@ -1,0 +1,19 @@
+﻿@model Blog.Models.BlogPost
+
+@{
+    ViewData["Title"] = Model.Title;
+}
+
+<div class="container">
+    <h2>@Model.Title</h2>
+    <p>
+        <strong>Yazar:</strong> <a href="/author/@Model.Author.Id">@Model.Author.Name</a> | 
+        <strong>Kategori:</strong> <a href="/category/@Model.Category.Id">@Model.Category.Name</a>
+    </p>
+    
+    <p><strong>Tarih:</strong> @Model.CreatedAt.ToString("dd MMMM yyyy")</p>
+    <hr />
+    <p>@Model.Content</p>
+
+    <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Geri Dön</a>
+</div>

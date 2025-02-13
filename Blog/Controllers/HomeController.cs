@@ -17,5 +17,20 @@ namespace Blog.Controllers {
                 .ToList();
             return View(posts);
         }
+
+        // Route to /Home/Details/{id}
+        public IActionResult Details(int id) {
+            var blogPost = _context.BlogPosts
+                .Include(p => p.Author)
+                .Include(p => p.Category)
+                .FirstOrDefault(p => p.Id == id);
+
+            if (blogPost == null) {
+                return NotFound();
+            }
+
+            return View("Details", blogPost);
+        }
+
     }
 }

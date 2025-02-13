@@ -33,6 +33,17 @@ namespace Blog.Controllers {
             return View(author);
         }
 
+        // Show author blog posts
+        public IActionResult Details(int id) {
+            var author = _context.Authors
+                .Include(a => a.BlogPosts)
+                .FirstOrDefault(a => a.Id == id);
+            if (author == null) {
+                return NotFound();
+            }
+            return View(author);
+        }
+
         // Delete author
         public async Task<IActionResult> Delete(int id) {
             var author = await _context.Authors.FindAsync(id);

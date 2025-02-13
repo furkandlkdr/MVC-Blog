@@ -1,0 +1,24 @@
+﻿@model Blog.Models.Category
+<div class=container mt-5>
+    <h2 class="text-center mb-4">@Model.Name Kategorisindeki Yazılar</h2>
+
+    @if (Model.BlogPosts.Any())
+    {
+        <ul class="list-group mb-4">
+            @foreach (var post in Model.BlogPosts)
+            {
+                <li class="list-group-item d-flex align-items-center">
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@post.Id"> @post.Title </a> - @post.CreatedAt.ToShortDateString()
+                </li>
+            }
+        </ul>
+    }
+    else
+    {
+        <p class="text-center">Bu kategoride henüz yazı bulunmamaktadır.</p>
+    }
+
+    <div>
+        <a class="btn btn-secondary" asp-controller="Home" asp-action="Index">Geri Dön</a>
+    </div>
+</div>

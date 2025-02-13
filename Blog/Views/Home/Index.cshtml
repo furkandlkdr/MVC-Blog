@@ -9,11 +9,19 @@ else {
     {
         <div>
             <h4>@post.Title</h4>
-            <p>@post.Summary <span><a href="/post/@post.Id">devamını oku</a></span></p>
             <p>
-                <a href="/author/@post.Author.Id">@post.Author.Name</a>
+                @post.Summary <span>
+                    <a asp-controller="Home" asp-action="Details" asp-route-id="@post.Id">
+                        devamını oku
+                    </a>
+                </span>
+            </p>
+            
+
+            <p>
+                <a href="/author/@post.AuthorId">@post.Author.Name</a>
                 - @post.CreatedAt.ToShortDateString()
-                - <a href="/category/@post.Category.Id">@post.Category.Name</a>
+                - <a href="/category/@post.CategoryId">@post.Category.Name</a>
             </p>
             <hr />
         </div>

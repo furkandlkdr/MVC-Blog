@@ -48,6 +48,20 @@ namespace Blog
                 name: "default",
                 pattern: "{controller=Home}/{action=Index}/{id?}");
 
+            app.UseEndpoints(endpoints => {
+                endpoints.MapControllerRoute(
+                    name: "authorDetails",
+                    pattern: "author/{id}",
+                    defaults: new { controller = "Author", action = "Details" });
+
+                endpoints.MapControllerRoute(
+                    name: "categoryDetails",
+                    pattern: "category/{id}",
+                    defaults: new { controller = "Category", action = "Details" });
+
+                endpoints.MapDefaultControllerRoute();
+            });
+
             app.Run();
         }
     }
